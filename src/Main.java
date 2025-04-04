@@ -5,21 +5,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        MyRunnable run = new MyRunnable();
+        Thread secondThread = new Thread(run);
+        secondThread.setDaemon(true);
+        secondThread.start();
 
-        System.out.println("You have 5 seconds to enter your name");
-        for(int i = 1; i <= 5; i++) {
-            try {
-                Thread.sleep(1000);
-            }
-            catch(InterruptedException e) {
-                System.out.println("Thread was interrupted");
-            }
+        System.out.println("You have 10 seconds to enter your name");
 
-            if(i == 5) {
-                System.out.println("Time's up!");
-            }
-        }
-        System.out.print("Enter your name");
+        System.out.print("Enter your name: ");
         String name = scanner.nextLine();
         System.out.println("Hello " + name);
 
